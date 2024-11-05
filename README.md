@@ -7,13 +7,11 @@ This repository implements a Quantum Circuit Learning (QCL) model for classifica
 The QCL model is structured into three main layers: the input layer, the hidden layer with variational quantum gates, and the output layer. These layers work together to encode input data, perform quantum operations for transformation, and then measure the quantum state to produce class probabilities. This setup enables QCL to efficiently learn complex data patterns with fewer parameters compared to classical neural networks.
 
 ### 1. Input Layer
-The input layer encodes each input feature into the quantum circuit by applying \( R_y \) rotations to each qubit. Each input value \( x[i] \) is scaled and applied to a qubit as:
-\[
-R_y(x[i] \cdot \pi)
-\]
+The input layer encodes each input feature into the quantum circuit by applying $\( R_y \)$ rotations to each qubit. Each input value $\( x[i] \)$ is scaled and applied to a qubit as:
+$\[R_y(x[i] \cdot \pi)\]$
 
 ### 2. Hidden Layer
-The hidden layer consists of parameterized \( R_x \), \( R_y \), and \( R_z \) rotations, followed by entangling CNOT gates. These operations introduce non-linearity through quantum entanglement, which inherently allows the quantum model to learn complex relationships without needing classical activation functions. By creating entanglement, the CNOT gates allow the model to approximate non-linear functions naturally, simplifying the network architecture while maintaining high expressive power.
+The hidden layer consists of parameterized $\( R_x \)$, $\( R_y \)$, and $\( R_z \)$ rotations, followed by entangling CNOT gates. These operations introduce non-linearity through quantum entanglement, which inherently allows the quantum model to learn complex relationships without needing classical activation functions. By creating entanglement, the CNOT gates allow the model to approximate non-linear functions naturally, simplifying the network architecture while maintaining high expressive power.
 
 ### 3. Output Layer
 The output layer applies additional rotations to the first two qubits, mapping the quantum state to output probabilities for each class. The rotations are parameterized and optimized during training to improve classification accuracy.
@@ -23,10 +21,8 @@ The output layer applies additional rotations to the first two qubits, mapping t
 In the QCL model, measurement is crucial as it converts quantum information into classical output, which can be used for prediction. Here’s how it works:
 
 For a qubit in the state
-\[
-|\psi\rangle = \alpha |0\rangle + \beta |1\rangle,
-\]
-measuring this qubit results in \(|0\rangle\) with probability \( |\alpha|^2 \) and \(|1\rangle\) with probability \( |\beta|^2 \). In our model, the first two qubits are measured to determine class probabilities, with the class having the highest probability chosen as the prediction.
+$\[|\psi\rangle = \alpha |0\rangle + \beta |1\rangle,\]$
+measuring this qubit results in $\(|0\rangle\)$ with probability $\( |\alpha|^2 \)$ and $\(|1\rangle\)$ with probability $\( |\beta|^2 \)$. In our model, the first two qubits are measured to determine class probabilities, with the class having the highest probability chosen as the prediction.
 
 Unlike classical neural networks, which require multiple matrix multiplications across layers to propagate information, quantum circuits encode complex relationships through superposition and entanglement. A single measurement yields the final prediction, capturing intricate patterns efficiently without requiring repeated transformations.
 
@@ -34,7 +30,7 @@ Unlike classical neural networks, which require multiple matrix multiplications 
 
 The QCL model is trained using mini-batch gradient descent with a parameter shift rule for gradient computation. Key aspects of training include:
 
-- **Parameter Shift Rule**: For each parameter, gradients are estimated by shifting the parameter forward and backward by \( \frac{\pi}{2} \). This allows accurate gradient calculation without needing complex derivative computations.
+- **Parameter Shift Rule**: For each parameter, gradients are estimated by shifting the parameter forward and backward by $\( \frac{\pi}{2} \)$. This allows accurate gradient calculation without needing complex derivative computations.
   
 - **Learning Rate Decay and Early Stopping**: The learning rate is gradually reduced to prevent the model from getting stuck in local minima. Early stopping is applied to halt training if there is no improvement in validation loss for a specified number of epochs.
 
