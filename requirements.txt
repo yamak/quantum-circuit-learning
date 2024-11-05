@@ -1,0 +1,7 @@
+numpy
+qiskit
+qiskit-aer
+scikit-learn
+matplotlib
+seaborn
+
